@@ -20,7 +20,7 @@ func main() {
 	var (
 		app = fiber.New(config)
 	)
-	app.Static("/", "./public")
+	app.Static("/", "./src/public")
 	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
 	fmt.Println(listenAddr)
 	app.Listen(listenAddr)
