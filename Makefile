@@ -1,5 +1,5 @@
 gen-css:
-	@pnpm dlx tailwindcss -i ./src/input.css -o ./src/public/global.css --watch
+	@npx tailwindcss -i ./src/input.css -o ./src/public/global.css --watch
 gen-templ:
 	@templ generate
 build: gen-templ

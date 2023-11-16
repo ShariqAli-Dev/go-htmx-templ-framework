@@ -2,13 +2,14 @@ package views
 
 templ layout() {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="en" data-theme="cupcake">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<title>Coursie GO</title>
 			<link rel="stylesheet" type="text/css" href="global.css"/>
 			<script src="htmx.js"></script>
+			<script src="theme-change.js"></script>
 		</head>
 		<body>
 			{ children... }
@@ -21,10 +22,17 @@ templ IndexPage() {
 		<header>
 			<h1 class="text-3xl font-bold underline">Coursie GO</h1>
 		</header>
-		<mail>
+		<main>
+			<select data-choose-theme>
+				<option value="cupcake">Cupcake</option>
+				<option value="dark">Dark</option>
+				<option value="light">Light</option>
+			</select>
+			<button data-set-theme="light">set to light</button>
 			<p class="text-gray-500">I am the main section</p>
-		</mail>
-		<p class="text-4xl font-bold text-red-500 underline">this is another header</p>
-		<h2>shariq is adding another header</h2>
+			<p class="text-4xl font-bold text-red-500 underline">this is another header</p>
+			<button class="btn">Click me</button>
+			<h2>shariq is adding another header</h2>
+		</main>
 	}
 }
