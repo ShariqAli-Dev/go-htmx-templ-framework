@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/a-h/templ"
 	"github.com/a-h/templ-examples/hello-world/views"
 	"github.com/gofiber/fiber/v2"
@@ -18,9 +20,8 @@ func main() {
 	var (
 		app = fiber.New(config)
 	)
-	// http.Handle("/", templ.Handler(views.IndexPage()))
-	// http.ListenAndServe(listenAddr, nil)
 	app.Static("/", "./public")
 	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
+	fmt.Println(listenAddr)
 	app.Listen(listenAddr)
 }

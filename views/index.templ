@@ -1,0 +1,28 @@
+package views 
+
+templ layout() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>Coursie GO</title>
+			<link rel="stylesheet" type="text/css" href="global.css"/>
+			<script src="htmx.js"></script>
+		</head>
+		<body>
+			{ children... }
+		</body>
+	</html>
+}
+
+templ IndexPage() {
+	@layout() {
+		<header>
+			<h1 class="text-3xl font-bold underline">Coursie GO</h1>
+		</header>
+		<main><p className="text-gray-500">I am the main section</p></main>
+		<p>this is another header</p>
+		<h2>shariq is adding another header</h2>
+	}
+}
