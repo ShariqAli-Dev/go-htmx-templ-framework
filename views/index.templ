@@ -1,8 +1,14 @@
 package views 
 
-templ layout() {
+var themes = []string{
+	"light",
+	"cupcake",
+	"dark",
+}
+
+templ baseHTML() {
 	<!DOCTYPE html>
-	<html lang="en" data-theme="cupcake">
+	<html lang="en" data-theme="light">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,29 +16,75 @@ templ layout() {
 			<link rel="stylesheet" type="text/css" href="global.css"/>
 			<script src="htmx.js"></script>
 			<script src="theme-change.js"></script>
+			<script src="index.js" defer></script>
 		</head>
-		<body>
+		<body class="h-[100svh] w-full flex flex-col">
 			{ children... }
 		</body>
 	</html>
 }
 
+templ Navbar() {
+	<header class="px-4 py-2 border-b-2 border-solid border-base-300">
+		<nav class="flex items-center justify-between max-w-[900px] m-auto">
+			<div class="prose">
+				<a href="/dashboard" class="text-2xl ">
+					Quizmify
+				</a>
+			</div>
+			<div>
+				<div class="dropdown ">
+					<label tabindex="0" class="btn btn-ghost rounded-btn">
+						<label>
+							<span>Theme</span>
+							<svg width="12px" height="12px" class="hidden w-2 h-2 fill-current opacity-60 sm:inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+								<path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+							</svg>
+						</label>
+					</label>
+					<ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow dropdown-end  rounded-box w-52 mt-4 bg-secondary-content overflow-hidden">
+						for _, theme:= range themes {
+							<li data-theme={ theme } class="m-1 text-left rounded-lg" data-set-theme={ theme }>
+								<div class="flex items-center justify-between" data-set-theme={ theme }>
+									<span>{ theme }</span>
+									// <span class="flex flex-wrap h-full gap-1 shrink-0">
+									// 	<span class="w-2 rounded bg-primary"></span>
+									// 	<span class="w-2 rounded bg-secondary"></span>
+									// 	<span class="w-2 rounded bg-accent"></span>
+									// 	<span class="w-2 rounded bg-neutral"></span>
+									// </span>
+								</div>
+							</li>
+						}
+					</ul>
+				</div>
+				<button class="btn btn-ghost">Sign In</button>
+			</div>
+		</nav>
+	</header>
+}
+
 templ IndexPage() {
-	@layout() {
-		<header>
-			<h1 class="text-3xl font-bold underline">Coursie GO</h1>
-		</header>
+	@Navbar()
+	@baseHTML() {
+		<main class="flex items-center justify-center flex-1">
+			<section class="prone max-w-[400px] p-5 border border-solid border-neutral rounded drop-shadow-lg">
+				<h2 class="font-bold text-bold">Welcome to Quizmify 🔥!</h2>
+				<p class="">Quizmify is a platform for creating quizzes using AI. Get started by logging in below!</p>
+				<div class="flex justify-center p-4 item-center">
+					<button class="btn btn-neutral">
+						Sign In With Google	
+					</button>
+				</div>
+			</section>
+		</main>
+	}
+}
+
+templ DashboardPage() {
+	@baseHTML() {
 		<main>
-			<select data-choose-theme>
-				<option value="cupcake">Cupcake</option>
-				<option value="dark">Dark</option>
-				<option value="light">Light</option>
-			</select>
-			<button data-set-theme="light">set to light</button>
-			<p class="text-gray-500">I am the main section</p>
-			<p class="text-4xl font-bold text-red-500 underline">this is another header</p>
-			<button class="btn">Click me</button>
-			<h2>shariq is adding another header</h2>
+			<h2>this is the dashboard page</h2>
 		</main>
 	}
 }

@@ -22,6 +22,7 @@ func main() {
 	)
 	app.Static("/", "./src/public")
 	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
+	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage())))
 	fmt.Println(listenAddr)
 	app.Listen(listenAddr)
 }
