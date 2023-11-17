@@ -62,17 +62,24 @@ templ Navbar() {
 			</div>
 		</nav>
 	</header>
+	<div>
+		<p id="counter">0</p>
+		<button id="incrementButton">Increment</button>
+		<button id="decrementButton">Decrement</button>
+		<button id="createPersonButton">Create Person</button>
+		<pre id="createdPerson"></pre>
+	</div>
 }
 
 templ IndexPage() {
-	@Navbar()
 	@baseHTML() {
+		@Navbar()
 		<main class="flex items-center justify-center flex-1">
 			<section class="prone max-w-[400px] p-5 border border-solid border-neutral rounded drop-shadow-lg">
 				<h2 class="font-bold text-bold">Welcome to Quizmify 🔥!</h2>
 				<p class="">Quizmify is a platform for creating quizzes using AI. Get started by logging in below!</p>
 				<div class="flex justify-center p-4 item-center">
-					<button class="btn btn-neutral">
+					<button class="btn btn-neutral btn-sm">
 						Sign In With Google	
 					</button>
 				</div>

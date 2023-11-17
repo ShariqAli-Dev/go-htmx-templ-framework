@@ -1,3 +1,5 @@
+gen-js:
+	@npx tsc -w	
 gen-css:
 	@npx tailwindcss -i ./src/input.css -o ./src/public/global.css --watch
 gen-templ:
