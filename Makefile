@@ -1,3 +1,5 @@
+gen-reset:
+	@rm ./src/public/index.js ./src/public/global.css ./views/index_templ.go
 gen-js:
 	@npx tsc -w	
 gen-css:

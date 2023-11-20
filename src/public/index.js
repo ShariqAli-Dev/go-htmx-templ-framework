@@ -1,3 +1,8 @@
+// google oauth
+const googleAuth = document.getElementById("google-auth");
+googleAuth?.addEventListener("click", () => {
+    window.location.href += "dashboard";
+});
 // increment state
 const incrementButton = document.getElementById("incrementButton");
 const decrementButton = document.getElementById("decrementButton");
@@ -27,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const today = new Date();
             const diff = today.getTime() - modalCloseDate.getTime();
             const diffInMinutes = diff / (1000 * 60);
-            if (diffInMinutes >= 5) {
+            if (diffInMinutes >= 1) {
                 dashboardModal.showModal();
             }
         }

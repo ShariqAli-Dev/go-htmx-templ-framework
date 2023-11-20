@@ -1,5 +1,7 @@
 package views 
 
+import "github.com/a-h/templ-examples/hello-world/views/partials"
+
 var themes = []string{
 	"light",
 	"cupcake",
@@ -72,7 +74,7 @@ templ IndexPage() {
 				<h2 class="text-lg font-bold text-bold">Welcome to Quizmify 🔥!</h2>
 				<p class="text-md">Quizmify is a platform for creating quizzes using AI. Get started by logging in below!</p>
 				<div class="flex justify-center p-4 item-center">
-					<button class="btn-sm font-lg btn btn-neutral">
+					<button id="google-auth" class="btn-sm font-lg btn btn-neutral">
 						Sign In With Google	
 					</button>
 				</div>
@@ -86,15 +88,7 @@ templ DashboardPage() {
 		@Navbar()
 		<main>
 			<h2 id="dash-header">this is the dashboard page</h2>
-			<dialog id="dashboard-modal" class="modal">
-				<div class="modal-box">
-					<form id="dashbord-modal-close" method="dialog">
-						<button class="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
-					</form>
-					<h3 class="text-lg font-bold">Welcome to Quizmify!</h3>
-					<p class="py-4">Are you tired of mundane and repatitive quizzes? Say goodbye tothe ordinary and embrace the extraordinary with Quizmify! Our platform is revolutionizing the quiz and trivia experience by harnessing the immense potential of artificial intelligence.</p>
-				</div>
-			</dialog>
+			@partials.DashboardDescription()
 		</main>
 	}
 }

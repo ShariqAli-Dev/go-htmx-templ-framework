@@ -21,8 +21,10 @@ func main() {
 		app = fiber.New(config)
 	)
 	app.Static("/", "./src/public")
+	app.Static("/assets", "./src/public/assets")
 	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
 	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage())))
+
 	fmt.Println(listenAddr)
 	app.Listen(listenAddr)
 }

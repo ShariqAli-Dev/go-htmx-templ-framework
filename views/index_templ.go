@@ -10,6 +10,8 @@ import "context"
 import "io"
 import "bytes"
 
+import "github.com/a-h/templ-examples/hello-world/views/partials"
+
 var themes = []string{
 	"light",
 	"cupcake",
@@ -211,7 +213,7 @@ func IndexPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><div class=\"flex justify-center p-4 item-center\"><button class=\"btn-sm font-lg btn btn-neutral\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><div class=\"flex justify-center p-4 item-center\"><button id=\"google-auth\" class=\"btn-sm font-lg btn btn-neutral\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -272,34 +274,15 @@ func DashboardPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2><dialog id=\"dashboard-modal\" class=\"modal\"><div class=\"modal-box\"><form id=\"dashbord-modal-close\" method=\"dialog\"><button class=\"absolute btn btn-sm btn-circle btn-ghost right-2 top-2\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var19 := `✕`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var19)
+			templ_7745c5c3_Err = partials.DashboardDescription().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</button></form><h3 class=\"text-lg font-bold\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var20 := `Welcome to Quizmify!`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var20)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3><p class=\"py-4\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var21 := `Are you tired of mundane and repatitive quizzes? Say goodbye tothe ordinary and embrace the extraordinary with Quizmify! Our platform is revolutionizing the quiz and trivia experience by harnessing the immense potential of artificial intelligence.`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var21)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></dialog></main>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</main>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
