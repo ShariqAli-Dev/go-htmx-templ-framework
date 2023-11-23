@@ -1,15 +1,12 @@
+// @ts-expect-error
+lucide.createIcons();
+
 interface Person {
   name: string;
   id: number;
 }
 
-// google oauth
-const googleAuth = document.getElementById("google-auth");
-googleAuth?.addEventListener("click", () => {
-  window.location.href += "dashboard";
-});
-
-// increment state
+// elements
 const incrementButton = document.getElementById(
   "incrementButton"
 ) as HTMLButtonElement;
@@ -17,6 +14,23 @@ const decrementButton = document.getElementById(
   "decrementButton"
 ) as HTMLButtonElement;
 const counter = document.getElementById("counter") as HTMLDivElement;
+const createPersonButton = document.getElementById(
+  "createPersonButton"
+) as HTMLButtonElement;
+const createdPersonPre = document.getElementById(
+  "createdPerson"
+) as HTMLPreElement;
+const dashboardModal = document.getElementById(
+  "dashboard-modal"
+) as HTMLDialogElement;
+const dashboardModalCloseButton = document.getElementById(
+  "dashbord-modal-close"
+) as HTMLButtonElement;
+const dashboardModalOpenButton = document.getElementById(
+  "open-dashboard-modal-button"
+) as HTMLButtonElement;
+
+// increment state
 incrementButton?.addEventListener("click", () => {
   counter.innerText = (parseInt(counter.innerText) + 1).toString();
 });
@@ -24,13 +38,12 @@ decrementButton?.addEventListener("click", () => {
   counter.innerText = (parseInt(counter.innerText) - 1).toString();
 });
 
+// google oauth
+const googleAuth = document.getElementById("google-auth");
+googleAuth?.addEventListener("click", () => {
+  window.location.href += "dashboard";
+});
 // create person
-const createPersonButton = document.getElementById(
-  "createPersonButton"
-) as HTMLButtonElement;
-const createdPersonPre = document.getElementById(
-  "createdPerson"
-) as HTMLPreElement;
 createPersonButton?.addEventListener("click", async () => {
   createPersonButton.disabled = true;
   const shariq = await createPerson({ name: "Shariq", id: 1 });
@@ -40,9 +53,6 @@ createPersonButton?.addEventListener("click", async () => {
 
 // dashboard modal
 document.addEventListener("DOMContentLoaded", () => {
-  const dashboardModal = document.getElementById(
-    "dashboard-modal"
-  ) as HTMLDialogElement;
   if (dashboardModal) {
     const dashboardModalCloseDate = localStorage.getItem(
       "dashboardModalCloseDate"
@@ -51,22 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const modalCloseDate = new Date(dashboardModalCloseDate);
       const today = new Date();
       const diff = today.getTime() - modalCloseDate.getTime();
-      const diffInMinutes = diff / (1000 * 60);
+      const diffInDays = diff / (1000 * 60 * 60 * 24);
 
-      if (diffInMinutes >= 1) {
-        (dashboardModal as any).showModal();
+      if (diffInDays >= 1) {
+        dashboardModal.showModal();
       }
     } else {
-      (dashboardModal as any).showModal();
+      dashboardModal.showModal();
     }
   }
 });
 
-const dashboardModalCloseButton = document.getElementById(
-  "dashbord-modal-close"
-) as HTMLButtonElement;
 dashboardModalCloseButton?.addEventListener("click", () => {
   localStorage.setItem("dashboardModalCloseDate", new Date().toString());
+});
+
+dashboardModalOpenButton?.addEventListener("click", () => {
+  dashboardModal.showModal();
 });
 
 // functions
