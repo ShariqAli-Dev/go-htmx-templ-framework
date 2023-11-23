@@ -1,4 +1,4 @@
-module github.com/a-h/templ-examples/hello-world
+module github.com/shariqali-dev/quizmify
 
 go 1.21.0
 

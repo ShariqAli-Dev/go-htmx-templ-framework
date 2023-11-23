@@ -1,0 +1,23 @@
+package partials 
+
+templ BaseHTML() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>Coursie GO</title>
+			<link rel="stylesheet" type="text/css" href="global.css"/>
+			<script src="htmx.js"></script>
+			<script src="theme-change.js"></script>
+			<script src="lucide.js"></script>
+			<script src="index.js" defer></script>
+		</head>
+		<body class="h-[100svh] w-full flex flex-col">
+			@Navbar()
+			<main class="flex-col flex-1 w-full max-w-5xl p-4 m-auto">
+				{ children... }
+			</main>
+		</body>
+	</html>
+}

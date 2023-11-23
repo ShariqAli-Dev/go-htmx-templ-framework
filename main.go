@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/a-h/templ"
-	"github.com/a-h/templ-examples/hello-world/views"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/adaptor"
+	"github.com/shariqali-dev/quizmify/views"
 )
 
 var config = fiber.Config{
@@ -21,7 +21,6 @@ func main() {
 		app = fiber.New(config)
 	)
 	app.Static("/", "./src/public")
-	app.Static("/assets", "./src/public/assets")
 	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
 	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage())))
 
