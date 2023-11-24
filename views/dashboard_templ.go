@@ -73,7 +73,7 @@ func DashboardPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></button></section><div class=\"grid gap-4 my-4 md:grid-cols-2\"><section class=\"flex items-center justify-between p-4 border border-solid rounded-xl border-neutral-content drop-shadow-lg\"><div><h3 class=\"text-lg font-bold\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></button></section><div class=\"grid gap-4 my-4 md:grid-cols-2\"><section id=\"create-quiz\" class=\"flex items-center justify-between p-4 border border-solid cursor-pointer rounded-xl border-neutral-content drop-shadow-lg hover:opacity-25 hover:border-neutral\"><div><h3 class=\"text-lg font-bold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -91,7 +91,7 @@ func DashboardPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><span><i data-lucide=\"brain\" class=\"h-[30px] w-[30px]\"></i></span></section><section class=\"flex items-center justify-between p-4 border border-solid rounded-xl border-neutral-content drop-shadow-lg\"><div><h3 class=\"text-lg font-bold\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><span><i data-lucide=\"brain\" class=\"h-[30px] w-[30px]\"></i></span></section><section id=\"view-history\" class=\"flex items-center justify-between p-4 border border-solid cursor-pointer rounded-xl border-neutral-content drop-shadow-lg hover:opacity-25 hover:border-neutral\"><div><h3 class=\"text-lg font-bold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -109,7 +109,7 @@ func DashboardPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><span><i data-lucide=\"history\" class=\"h-[30px] w-[30px]\"></i></span></section></div><div class=\"grid gap-4 md:grid-cols-2 lg:grid-cols-7\"><section class=\"col-span-4 p-4 border border-solid border-neutral-content rounded-xl drop-shadow-lg\"><h3 class=\"text-lg font-bold\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><span><i data-lucide=\"history\" class=\"h-[30px] w-[30px]\"></i></span></section></div><div class=\"grid gap-4 md:grid-cols-2 lg:grid-cols-7\"><section id=\"hot-topics-section\" class=\"col-span-4 p-4 border border-solid border-neutral-content rounded-xl drop-shadow-lg\"><h3 class=\"text-lg font-bold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

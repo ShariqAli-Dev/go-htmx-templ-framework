@@ -1,34 +1,32 @@
+// ***** INIT **** //
 // @ts-expect-error
 lucide.createIcons();
-// elements
-const incrementButton = document.getElementById("incrementButton");
-const decrementButton = document.getElementById("decrementButton");
-const counter = document.getElementById("counter");
-const createPersonButton = document.getElementById("createPersonButton");
-const createdPersonPre = document.getElementById("createdPerson");
-const dashboardModal = document.getElementById("dashboard-modal");
-const dashboardModalCloseButton = document.getElementById("dashbord-modal-close");
-const dashboardModalOpenButton = document.getElementById("open-dashboard-modal-button");
-// increment state
-incrementButton?.addEventListener("click", () => {
-    counter.innerText = (parseInt(counter.innerText) + 1).toString();
-});
-decrementButton?.addEventListener("click", () => {
-    counter.innerText = (parseInt(counter.innerText) - 1).toString();
+// ***** CONSTANTS ***** //
+const DASHBOARD_PATH = window.location.origin + "/dashboard";
+const QUIZ_PATH = window.location.origin + "/quiz";
+// ***** INDEX ***** //
+const createQuizSection = document.getElementById("create-quiz");
+const title = document.getElementById("title");
+//heading nav click
+title?.addEventListener("click", () => {
+    if (window.location.href !== DASHBOARD_PATH) {
+        window.location.href = DASHBOARD_PATH;
+    }
 });
 // google oauth
 const googleAuth = document.getElementById("google-auth");
 googleAuth?.addEventListener("click", () => {
     window.location.href += "dashboard";
 });
-// create person
-createPersonButton?.addEventListener("click", async () => {
-    createPersonButton.disabled = true;
-    const shariq = await createPerson({ name: "Shariq", id: 1 });
-    createPersonButton.disabled = false;
-    createdPersonPre.innerText = JSON.stringify(shariq, null, 2);
+// ***** DASHBOARD ***** //
+// quiz me
+createQuizSection?.addEventListener("click", () => {
+    window.location.href = window.location.origin + "/quiz";
 });
 // dashboard modal
+const dashboardModal = document.getElementById("dashboard-modal");
+const dashboardModalCloseButton = document.getElementById("dashbord-modal-close");
+const dashboardModalOpenButton = document.getElementById("open-dashboard-modal-button");
 document.addEventListener("DOMContentLoaded", () => {
     if (dashboardModal) {
         const dashboardModalCloseDate = localStorage.getItem("dashboardModalCloseDate");
@@ -52,11 +50,21 @@ dashboardModalCloseButton?.addEventListener("click", () => {
 dashboardModalOpenButton?.addEventListener("click", () => {
     dashboardModal.showModal();
 });
-// functions
-async function createPerson(person) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(person);
-        }, 2000);
-    });
-}
+const multipleChoiceButton = document.getElementById("multiple-choice-button");
+const openEndedButton = document.getElementById("open-ended-button");
+const variantInput = document.getElementById("variant-input");
+// switching variant
+multipleChoiceButton?.addEventListener("click", () => {
+    if (variantInput.getAttribute("value") !== "multiple-choice") {
+        openEndedButton.classList.remove("btn-neutral");
+        multipleChoiceButton.classList.add("btn-neutral");
+        variantInput.setAttribute("value", "multiple-choice");
+    }
+});
+openEndedButton?.addEventListener("click", () => {
+    if (variantInput.getAttribute("value") !== "open-ended") {
+        multipleChoiceButton.classList.remove("btn-neutral");
+        openEndedButton.classList.add("btn-neutral");
+        variantInput.setAttribute("value", "open-ended");
+    }
+});

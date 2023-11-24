@@ -1,0 +1,47 @@
+package views
+
+import "github.com/shariqali-dev/quizmify/views/partials"
+
+templ Quiz() {
+	@partials.BaseHTML() {
+		<div class="flex items-center justify-center h-full">
+			<section class="max-w-md p-4 border border-solid rounded-xl border-neutral-content drop-shadow-lg">
+				<div>
+					<h2 class="text-3xl font-bold">Quiz Creation</h2>
+					<p class="text-base">Choose a topic</p>
+				</div>
+				<form class="form-control">
+					<input type="hidden" name="variant" id="variant-input" value="multiple-choice"/>
+					<label class="mt-4 label" for="topic">
+						<span class="text-xl font-bold label-text">Topic</span>
+					</label>
+					<input class="w-full max-w-xs rounded-md input input-sm border-neutral-content" name="topic" id="topic-input" required/>
+					<label class="mt-4 label" for="questions">
+						<span class="text-xl font-bold label-text">Number of Questions</span>
+					</label>
+					<input class="w-full max-w-xs rounded-md input input-sm border-noutral-content" name="questions" id="questions-input" type="number" required min="1" value="1"/>
+					<label class="label" for="questions">
+						<span class="text-base label-text-alt">
+							You can choose how many quuestions you would like to be quizzed on here.
+						</span>
+					</label>
+					<div class="flex items-center my-4 space-between">
+						<button type="button" id="multiple-choice-button" class="flex w-[50%] justify-center items-center btn btn-neutral rounded-none rounded-l-lg">
+							<span>
+								<i data-lucide="copy-check"></i>
+							</span>
+							Mutliple Choice
+						</button>
+						<button type="button" id="open-ended-button" class="flex w-[50%] justify-center items-center btn rounded-none rounded-r-lg">
+							<span>
+								<i data-lucide="book-open"></i>
+							</span>
+							Open Ended
+						</button>
+					</div>
+					<button type="submit" class="mt-4 text-lg btn btn-neutral justify-self-end">Create Quiz</button>
+				</form>
+			</section>
+		</div>
+	}
+}
