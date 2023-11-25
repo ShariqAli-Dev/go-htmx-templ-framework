@@ -1,3 +1,4 @@
+"use strict";
 // ***** INIT **** //
 // @ts-expect-error
 lucide.createIcons();
@@ -47,7 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
 dashboardModalCloseButton?.addEventListener("click", () => {
     localStorage.setItem("dashboardModalCloseDate", new Date().toString());
 });
-dashboardModalOpenButton?.addEventListener("click", () => {
+dashboardModalOpenButton?.addEventListener("click", async () => {
+    const { camelCase } = await import("lodash");
+    console.log(camelCase("hello world"));
     dashboardModal.showModal();
 });
 const multipleChoiceButton = document.getElementById("multiple-choice-button");
@@ -55,16 +58,16 @@ const openEndedButton = document.getElementById("open-ended-button");
 const variantInput = document.getElementById("variant-input");
 // switching variant
 multipleChoiceButton?.addEventListener("click", () => {
-    if (variantInput.getAttribute("value") !== "multiple-choice") {
+    if (variantInput?.getAttribute("value") !== "multiple-choice") {
         openEndedButton.classList.remove("btn-neutral");
         multipleChoiceButton.classList.add("btn-neutral");
-        variantInput.setAttribute("value", "multiple-choice");
+        variantInput?.setAttribute("value", "multiple-choice");
     }
 });
 openEndedButton?.addEventListener("click", () => {
-    if (variantInput.getAttribute("value") !== "open-ended") {
+    if (variantInput?.getAttribute("value") !== "open-ended") {
         multipleChoiceButton.classList.remove("btn-neutral");
         openEndedButton.classList.add("btn-neutral");
-        variantInput.setAttribute("value", "open-ended");
+        variantInput?.setAttribute("value", "open-ended");
     }
 });

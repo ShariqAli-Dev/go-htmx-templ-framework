@@ -1,10 +1,24 @@
 {
   "compilerOptions": {
-    "module": "ES2020",
-    "moduleResolution": "Node",
     "target": "ES2020",
-    "sourceMap": false,
-    "outDir": "src/public"
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "outDir": "web/src",
+
+    // /* Bundler mode */
+    // "moduleResolution": "bundler",
+    // "allowImportingTsExtensions": true,
+    // "resolveJsonModule": true,
+    // "isolatedModules": true,
+    // "noEmit": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/*.ts"]
+  "include": ["web/**.ts"],
+  "exclude": ["web/vite.config.ts"]
 }

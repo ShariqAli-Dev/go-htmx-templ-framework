@@ -1,9 +1,9 @@
-gen-reset:
-	@rm ./src/public/index.js ./src/public/global.css ./views/index_templ.go
+format-templ:
+	@go run scripts/template_fromatter.go
 gen-js:
-	@npx tsc -w	
+	@npx tsc -w
 gen-css:
-	@npx tailwindcss -i ./src/input.css -o ./src/public/global.css --watch
+	@npx tailwindcss -i ./web/input.css -o ./web/public/global.css --watch
 gen-templ:
 	@templ generate
 build: gen-templ

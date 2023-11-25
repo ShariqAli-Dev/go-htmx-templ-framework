@@ -65,10 +65,11 @@ dashboardModalCloseButton?.addEventListener("click", () => {
   localStorage.setItem("dashboardModalCloseDate", new Date().toString());
 });
 
-dashboardModalOpenButton?.addEventListener("click", () => {
+dashboardModalOpenButton?.addEventListener("click", async () => {
+  const { camelCase } = await import("lodash");
+  console.log(camelCase("hello world"));
   dashboardModal.showModal();
 });
-
 // ***** QUIZ **** //
 type Variant = "multiple-choice" | "open-ended";
 
@@ -82,16 +83,16 @@ const variantInput = document.getElementById("variant-input");
 
 // switching variant
 multipleChoiceButton?.addEventListener("click", () => {
-  if (variantInput.getAttribute("value") !== ("multiple-choice" as Variant)) {
+  if (variantInput?.getAttribute("value") !== ("multiple-choice" as Variant)) {
     openEndedButton.classList.remove("btn-neutral");
     multipleChoiceButton.classList.add("btn-neutral");
-    variantInput.setAttribute("value", "multiple-choice" as Variant);
+    variantInput?.setAttribute("value", "multiple-choice" as Variant);
   }
 });
 openEndedButton?.addEventListener("click", () => {
-  if (variantInput.getAttribute("value") !== ("open-ended" as Variant)) {
+  if (variantInput?.getAttribute("value") !== ("open-ended" as Variant)) {
     multipleChoiceButton.classList.remove("btn-neutral");
     openEndedButton.classList.add("btn-neutral");
-    variantInput.setAttribute("value", "open-ended" as Variant);
+    variantInput?.setAttribute("value", "open-ended" as Variant);
   }
 });

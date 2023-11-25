@@ -20,7 +20,7 @@ func main() {
 	var (
 		app = fiber.New(config)
 	)
-	app.Static("/", "./src/public")
+	app.Static("/", "./web/dist")
 	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
 	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage())))
 	app.Get("/quiz", adaptor.HTTPHandler(templ.Handler(views.Quiz())))
