@@ -30,6 +30,21 @@ func main() {
 				return nil
 			}
 
+			// edge case of the index file
+			if fileNameWithoutSuffix == "index" {
+				baseTemplatePath := routesPath + "/partials/base_html_templ.go"
+				baseTemplate, err := os.ReadFile(baseTemplatePath)
+				if err != nil {
+					return err
+				}
+				baseTemplateContent := string(baseTemplate)
+				searchString := "index.js"
+				templateContent := strings.Replace(baseTemplateContent, searchString, searchFileName+".js", 1)
+				if err := os.WriteFile(baseTemplatePath, []byte(templateContent), 0644); err != nil {
+					return err
+				}
+			}
+
 			template, err := os.ReadFile(path)
 			if err != nil {
 				return err
@@ -70,7 +85,7 @@ func getBuiltJS(fileBase string) string {
 	}
 	for _, file := range files {
 		if strings.Contains(file, fileBase) {
-			return file
+			return file[:len(file)-3]
 		}
 	}
 	return ""

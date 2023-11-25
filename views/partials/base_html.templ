@@ -17,6 +17,7 @@ templ BaseHTML(route string) {
 			<main class="flex-col flex-1 w-full max-w-5xl p-4 m-auto">
 				{ children... }
 			</main>
+			<script type="module" src="assets/index.js"></script>
 			<script type="module" src={ "assets/" + route + ".js" }></script>
 		</body>
 	</html>
