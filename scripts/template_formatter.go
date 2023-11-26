@@ -51,8 +51,8 @@ func main() {
 			}
 			templateContent := string(template)
 
-			searchString := fmt.Sprintf(`HTML("%s")`, fileNameWithoutSuffix)
-			replacementString := fmt.Sprintf(`HTML("%s")`, searchFileName)
+			searchString := fmt.Sprintf(`BaseHTML("%s",`, fileNameWithoutSuffix)
+			replacementString := fmt.Sprintf(`BaseHTML("%s",`, searchFileName)
 
 			templateContent = strings.Replace(templateContent, searchString, replacementString, 1)
 			if err := os.WriteFile(path, []byte(templateContent), 0644); err != nil {

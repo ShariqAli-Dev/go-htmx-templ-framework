@@ -17,8 +17,13 @@ var techs = []Tech{
 	{name: "Typescript", path: "/assets/typescript.png", website: "https://www.typescriptlang.org/"},
 }
 
+var sources = []string{
+	"d3.js",
+	"d3-cloud.js",
+}
+
 templ DashboardPage() {
-	@partials.BaseHTML("dashboard") {
+	@partials.BaseHTML("dashboard",sources) {
 		<section class="flex items-center">
 			<h2 class="text-xl font-bold">Dashboard&nbsp;</h2>
 			<button id="open-dashboard-modal-button" class="btn btn-sm btn-neutral">
@@ -46,12 +51,12 @@ templ DashboardPage() {
 			<section id="hot-topics-section" class="col-span-4 p-4 border border-solid border-neutral-content rounded-xl drop-shadow-lg">
 				<h3 class="text-lg font-bold">Hot Topics</h3>
 				<p>Click on a topic to start a quiz on it.</p>
-				<img alt="some crazy image tag going on"/>
+				<text cursor="pointer">this is a test</text>
+				<div id="word-cloud" class="fill-base-content"></div>
 			</section>
 			<section class="col-span-4 p-4 border border-solid lg:col-span-3 border-neutral-content rounded-xl drop-shadow-lg">
 				<h3 class="text-lg font-bold">Recent Activity</h3>
 				<p>You have played a total of 43 quizzes.</p>
-				<p>ther eis a loop happening here</p>
 			</section>
 		</div>
 		<dialog id="dashboard-modal" class="modal">

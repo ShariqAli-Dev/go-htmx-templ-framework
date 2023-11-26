@@ -1,6 +1,6 @@
 package partials 
 
-templ BaseHTML(route string) {
+templ BaseHTML(route string, sources[]string) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -18,6 +18,9 @@ templ BaseHTML(route string) {
 				{ children... }
 			</main>
 			<script type="module" src="assets/index.js"></script>
+			for _, source := range sources {
+				<script src={ source }></script>
+			}
 			<script type="module" src={ "assets/" + route + ".js" }></script>
 		</body>
 	</html>
