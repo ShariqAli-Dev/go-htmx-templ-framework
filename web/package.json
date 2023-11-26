@@ -9,12 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@types/d3-cloud": "^1.2.9"
   }
 }

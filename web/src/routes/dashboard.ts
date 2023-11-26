@@ -44,3 +44,61 @@ dashboardModalCloseButton?.addEventListener("click", () => {
 dashboardModalOpenButton?.addEventListener("click", async () => {
   dashboardModal.showModal();
 });
+const margin = { x: 20, y: 20 };
+const width = 450 - 2 * margin.x;
+const height = 450 - 2 * margin.y;
+const words = [
+  "Hello",
+  "world",
+  "normally",
+  "you",
+  "want",
+  "more",
+  "words",
+  "than",
+  "this",
+].map((word) => {
+  return { text: word, size: 10 + Math.random() * 90 };
+});
+var svg = d3
+  .select("#word-cloud")
+  .append("svg")
+  .attr("width", width + margin.x)
+  .attr("height", height + margin.y)
+  .append("g")
+  .attr("transform", "translate(" + margin.x / 2 + "," + margin.y / 2 + ")");
+const layout = d3.layout
+  .cloud()
+  .size([width, height])
+  .words(words)
+  .padding(10)
+  .fontSize(60)
+  .on("end", draw);
+layout.start();
+
+function draw(words: any) {
+  svg
+    .append("g")
+    .attr(
+      "transform",
+      "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")"
+    )
+    .selectAll("text")
+    .data(words)
+    .enter()
+    .append("text")
+    .style("font-size", function (d: any) {
+      return d.size + "px";
+    })
+    .attr("text-anchor", "middle")
+    .attr("transform", function (d: any) {
+      return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+    })
+    .text(function (d: any) {
+      return d.text;
+    })
+    .on("click", function (_, word) {
+      window.location.href = window.location.origin + "/quiz" + "?q=" + word;
+    })
+    .style("cursor", "pointer");
+}

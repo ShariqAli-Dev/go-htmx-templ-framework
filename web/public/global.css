@@ -2000,6 +2000,22 @@ html {
   fill: var(--fallback-nc,oklch(var(--nc)/1));
 }
 
+.fill-white {
+  fill: #fff;
+}
+
+.fill-neutral {
+  fill: var(--fallback-n,oklch(var(--n)/1));
+}
+
+.fill-slate-500 {
+  fill: #64748b;
+}
+
+.fill-base-content {
+  fill: var(--fallback-bc,oklch(var(--bc)/1));
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -2071,6 +2087,21 @@ html {
 
 .font-bold {
   font-weight: 700;
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.text-neutral-content {
+  --tw-text-opacity: 1;
+  color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
+}
+
+.text-neutral {
+  --tw-text-opacity: 1;
+  color: var(--fallback-n,oklch(var(--n)/var(--tw-text-opacity)));
 }
 
 .opacity-60 {
