@@ -3,10 +3,18 @@ testdata_dir = "testdata"
 tmp_dir = "tmp"
 
 [build]
-exclude_dir = ["assets", "tmp", "vendor", "testdata", "bin", "node_modules"]
+exclude_dir = [
+    "assets",
+    "tmp",
+    "vendor",
+    "testdata",
+    "bin",
+    "node_modules",
+    "web",
+]
 args_bin = []
 bin = "tmp\\main.exe"
-cmd = "make gen-templ && cd web && npm run build && cd .. && make format-templ && go build -o ./tmp/main.exe main.go"
+cmd = "templ generate && cd web && npm run build && cd .. && bin\\template_formatter.exe && go build -o ./tmp/main.exe main.go"
 delay = 1500
 exclude_file = []
 exclude_regex = ["_test.go", "_templ.go", "dist", "node_modules"]

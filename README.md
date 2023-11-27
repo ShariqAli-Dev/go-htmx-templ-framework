@@ -4,5 +4,6 @@
 
 ## Tools: htmx, go, fiber, templ, vite, ts
 
-have 1 terminal with css generation
-have another terminal with air running
+1 terminal with air
+1 terminal with tsc -w
+1 terminal with make gen-css
