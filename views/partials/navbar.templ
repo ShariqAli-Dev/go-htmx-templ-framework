@@ -15,18 +15,18 @@ templ Navbar() {
 			<div>
 				<div class="dropdown dropdown-end">
 					<label tabindex="0" class="btn btn-ghost">
-						<span class="text-xl">
+						<span class="text-3xl">
 							Theme
 						</span>
-						<svg width="12px" height="12px" class="hidden w-2 h-2 fill-current opacity-60 sm:inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+						<svg width="18px" height="18px" class="hidden w-4 h-4 fill-current opacity-60 sm:inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
 							<path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
 						</svg>
 					</label>
 					<ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow dropdown-end  rounded-box w-52 mt-4 bg-secondary-content overflow-hidden">
 						for _, theme:= range themes {
-							<li data-theme={ theme } class="m-1 text-left rounded-lg" data-set-theme={ theme }>
+							<li data-theme={ theme } class="m-1 text-xl rounded-lg" data-set-theme={ theme }>
 								<div class="flex items-center justify-between">
-									<span>{ theme }</span>
+									<span class="text-xl">{ theme }</span>
 									<span class="flex flex-wrap h-full gap-1 shrink-0">
 										<span class="px-1 py-2 rounded bg-primary"></span>
 										<span class="px-1 py-2 rounded bg-secondary"></span>
@@ -38,7 +38,7 @@ templ Navbar() {
 						}
 					</ul>
 				</div>
-				<button class="text-xl btn btn-ghost">Sign In</button>
+				<button class="text-3xl btn btn-ghost">Sign In</button>
 			</div>
 		</nav>
 	</header>
