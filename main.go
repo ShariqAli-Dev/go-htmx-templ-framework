@@ -30,7 +30,7 @@ var wordMapWords = []string{
 }
 
 func main() {
-	listenAddr := ":42069"
+	listenAddr := ":3000"
 	jsonWordMapWords, err := json.Marshal(wordMapWords)
 	if err != nil {
 		log.Fatal(err)
@@ -46,6 +46,6 @@ func main() {
 	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage(stringifiedJsonWordMapWords))))
 	app.Get("/quiz", adaptor.HTTPHandler(templ.Handler(views.Quiz())))
 
-	fmt.Println(listenAddr)
+	fmt.Printf("http://localhost%s\n", listenAddr)
 	app.Listen(listenAddr)
 }
