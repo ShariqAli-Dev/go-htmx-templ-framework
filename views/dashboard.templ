@@ -22,7 +22,7 @@ var sources = []string{
 	"d3-cloud.js",
 }
 
-templ DashboardPage() {
+templ DashboardPage(wordMapWords string) {
 	@partials.BaseHTML("dashboard",sources) {
 		<section class="flex items-center">
 			<h2 class="text-2xl font-bold">Dashboard&nbsp;</h2>
@@ -50,7 +50,7 @@ templ DashboardPage() {
 			<section id="hot-topics-section" class="col-span-4 p-4 border border-solid border-neutral-content rounded-xl drop-shadow-lg">
 				<h3 class="text-xl font-bold">Hot Topics</h3>
 				<p class="text-lg">Click on a topic to start a quiz on it.</p>
-				<text cursor="pointer">this is a test</text>
+				<input id="wordmap-words" name="wordmap-words" type="hidden" value={ wordMapWords }/>
 				<div id="word-cloud" class="fill-base-content"></div>
 			</section>
 			<section class="col-span-4 p-4 border border-solid lg:col-span-3 border-neutral-content rounded-xl drop-shadow-lg">

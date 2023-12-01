@@ -6,7 +6,14 @@ const multipleChoiceButton = document.getElementById(
 const openEndedButton = document.getElementById(
   "open-ended-button"
 ) as HTMLButtonElement;
-const variantInput = document.getElementById("variant-input");
+const variantInput = document.getElementById("variant") as HTMLInputElement;
+const topicInput = document.getElementById("topic") as HTMLInputElement;
+
+// routed from word cloud
+const topicParam = new URLSearchParams(window.location.search).get("topic");
+if (topicParam) {
+  topicInput.value = topicParam;
+}
 
 // switching variant
 multipleChoiceButton?.addEventListener("click", () => {

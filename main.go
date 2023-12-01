@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
@@ -14,15 +16,34 @@ var config = fiber.Config{
 		return c.JSON(map[string]string{"error": err.Error()})
 	},
 }
+var wordMapWords = []string{
+	"Hello",
+	"world",
+	"normally",
+	"you",
+	"want",
+	"more",
+	"words",
+	"than",
+	"this",
+	"shariq was here",
+}
 
 func main() {
-	listenAddr := ":3000"
-	var (
-		app = fiber.New(config)
-	)
+	listenAddr := ":42069"
+	jsonWordMapWords, err := json.Marshal(wordMapWords)
+	if err != nil {
+		log.Fatal(err)
+	}
+	stringifiedJsonWordMapWords := string(jsonWordMapWords)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	app := fiber.New(config)
 	app.Static("/", "./web/dist")
 	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
-	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage())))
+	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage(stringifiedJsonWordMapWords))))
 	app.Get("/quiz", adaptor.HTTPHandler(templ.Handler(views.Quiz())))
 
 	fmt.Println(listenAddr)

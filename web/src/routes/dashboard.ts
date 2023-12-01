@@ -44,20 +44,15 @@ dashboardModalCloseButton?.addEventListener("click", () => {
 dashboardModalOpenButton?.addEventListener("click", async () => {
   dashboardModal.showModal();
 });
+
+// word map
+const wordmapInput = document.getElementById(
+  "wordmap-words"
+) as HTMLInputElement;
 const margin = { x: 20, y: 20 };
 const width = 450 - 2 * margin.x;
 const height = 450 - 2 * margin.y;
-const words = [
-  "Hello",
-  "world",
-  "normally",
-  "you",
-  "want",
-  "more",
-  "words",
-  "than",
-  "this",
-].map((word) => {
+const words = (JSON.parse(wordmapInput.value) as string[]).map((word) => {
   return { text: word, size: 10 + Math.random() * 90 };
 });
 var svg = d3
@@ -72,7 +67,7 @@ const layout = d3.layout
   .size([width, height])
   .words(words)
   .padding(10)
-  .fontSize(60)
+  .fontSize(40)
   .on("end", draw);
 layout.start();
 
@@ -97,8 +92,9 @@ function draw(words: any) {
     .text(function (d: any) {
       return d.text;
     })
-    .on("click", function (_, word) {
-      window.location.href = window.location.origin + "/quiz" + "?q=" + word;
+    .on("click", function (word: any, _) {
+      window.location.href =
+        window.location.origin + "/quiz" + "?topic=" + (word as any).text;
     })
     .style("cursor", "pointer");
 }
