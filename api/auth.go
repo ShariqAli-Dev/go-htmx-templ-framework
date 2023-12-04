@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -22,14 +21,12 @@ func NewAuthHandler() *AuthHandler {
 }
 
 func (h *AuthHandler) HandleGetAuthorizationCallback(c *fiber.Ctx) error {
-	user, err := goth_fiber.CompleteUserAuth(c, goth_fiber.CompleteUserAuthOptions{ShouldLogout: false})
+	_, err := goth_fiber.CompleteUserAuth(c, goth_fiber.CompleteUserAuthOptions{ShouldLogout: false})
 	if err != nil {
-		log.Fatal(err)
-		return c.JSON(err)
+		return c.Redirect("/")
 	}
 
-	fmt.Println(user)
-	return c.Redirect("/dashboard", fiber.StatusFound)
+	return c.Redirect("/dashboard")
 
 }
 
@@ -38,7 +35,7 @@ func (h *AuthHandler) HandleGetLogout(c *fiber.Ctx) error {
 		log.Fatal(err)
 	}
 
-	return c.SendString("logout")
+	return c.Redirect("/")
 }
 
 func init() {

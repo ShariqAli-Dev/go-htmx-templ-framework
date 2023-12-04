@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 
 	"github.com/a-h/templ"
@@ -18,11 +17,11 @@ func NewRouteHandler() *RouteHandler {
 	return &RouteHandler{}
 }
 func (h *RouteHandler) HandleGetIndex(c *fiber.Ctx) error {
-	user, err := GetUserFromSession(c)
+	_, err := GetUserFromSession(c)
 	if err != nil {
-		fmt.Printf("there was an error grabbing the session %s\n", err)
+		return adaptor.HTTPHandler(templ.Handler(views.IndexPage()))(c)
 	}
-	return adaptor.HTTPHandler(templ.Handler(views.IndexPage()))(c)
+	return c.Redirect("/dashboard")
 }
 
 func (h *RouteHandler) HandleGetDashboard(c *fiber.Ctx) error {
