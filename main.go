@@ -1,51 +1,38 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"log"
-
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/adaptor"
+	"github.com/shareed2k/goth_fiber"
+	"github.com/shariqali-dev/quizmify/api"
 	"github.com/shariqali-dev/quizmify/views"
 )
 
 var config = fiber.Config{
 	ErrorHandler: func(c *fiber.Ctx, err error) error {
-		return c.JSON(map[string]string{"error": err.Error()})
+		return adaptor.HTTPHandler(templ.Handler(views.NotFound()))(c)
 	},
-}
-var wordMapWords = []string{
-	"Hello",
-	"world",
-	"normally",
-	"you",
-	"want",
-	"more",
-	"words",
-	"than",
-	"this",
-	"shariq was here",
 }
 
 func main() {
 	listenAddr := ":3000"
-	jsonWordMapWords, err := json.Marshal(wordMapWords)
-	if err != nil {
-		log.Fatal(err)
-	}
-	stringifiedJsonWordMapWords := string(jsonWordMapWords)
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	app := fiber.New(config)
+	var (
+		routeHandler = api.NewRouteHandler()
+		authHandler  = api.NewAuthHandler()
+		app          = fiber.New(config)
+	)
+
 	app.Static("/", "./web/dist")
-	app.Get("/", adaptor.HTTPHandler(templ.Handler(views.IndexPage())))
-	app.Get("/dashboard", adaptor.HTTPHandler(templ.Handler(views.DashboardPage(stringifiedJsonWordMapWords))))
-	app.Get("/quiz", adaptor.HTTPHandler(templ.Handler(views.Quiz())))
 
-	fmt.Printf("http://localhost%s\n", listenAddr)
+	app.Get("/login/:provider", goth_fiber.BeginAuthHandler)
+	app.Get("/auth/:provider/callback", authHandler.HandleGetAuthorizationCallback)
+	app.Get("/logout", authHandler.HandleGetLogout)
+
+	app.Get("/", routeHandler.HandleGetIndex)
+	app.Get("/dashboard", api.ValidateUser, routeHandler.HandleGetDashboard)
+	app.Get("/quiz", api.ValidateUser, routeHandler.HandleGetQuiz)
+
 	app.Listen(listenAddr)
 }

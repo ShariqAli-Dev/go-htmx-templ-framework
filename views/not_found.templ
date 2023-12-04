@@ -1,0 +1,12 @@
+package views
+
+import "github.com/shariqali-dev/quizmify/views/partials"
+
+templ NotFound() {
+	@partials.BaseHTML("",nil) {
+		<section>
+			<h2>This page was not found</h2>
+			<a href="/" class="btn btn-link">return to dashboard</a>
+		</section>
+	}
+}
