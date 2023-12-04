@@ -9,9 +9,11 @@ var themes = []string{
 templ Navbar() {
 	<header class="py-2 border-b-2 border-solid border-neutral-content">
 		<nav class="flex items-center justify-between max-w-5xl px-4 m-auto">
-			<h1 id="title" class="text-4xl link">
-				Quizmify
-			</h1>
+			<a href="/dashboard">
+				<h1 id="title" class="text-4xl link">
+					Quizmify
+				</h1>
+			</a>
 			<div>
 				<div class="dropdown dropdown-end">
 					<label tabindex="0" class="btn btn-ghost">
@@ -39,7 +41,7 @@ templ Navbar() {
 					</ul>
 				</div>
 				<a class="text-3xl btn btn-ghost" id="sign-in" href="/login/google">Sign In</a>
-				<a class="text-3xl  btn btn-ghost" id="sign-out" href="/logout">Log Out</a>
+				<a class="text-3xl btn btn-ghost" id="sign-out" href="/logout">Log Out</a>
 			</div>
 		</nav>
 	</header>
