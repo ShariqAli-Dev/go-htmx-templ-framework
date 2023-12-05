@@ -1,11 +1,3 @@
-// quiz me
-const createQuizSection = document.getElementById(
-  "create-quiz"
-) as HTMLDivElement;
-createQuizSection?.addEventListener("click", () => {
-  window.location.href = window.location.origin + "/quiz";
-});
-
 // dashboard modal
 const dashboardModal = document.getElementById(
   "dashboard-modal"

@@ -3,6 +3,7 @@ package api
 import (
 	"log"
 	"os"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/session"
@@ -48,6 +49,7 @@ func init() {
 	googleClientSecret := os.Getenv("GOOGLE_CLIENT_SECRET")
 
 	config := session.Config{
+		Expiration:   24 * time.Hour,
 		Storage:      sqlite3.New(),
 		KeyLookup:    "cookie:_gothic_session",
 		CookieSecure: os.Getenv("ENVIRONMENT") == "production",

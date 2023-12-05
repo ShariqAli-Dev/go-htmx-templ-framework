@@ -8,3 +8,5 @@ build: gen-templ
 	@go build -o bin/site
 run: build 
 	@./bin/site
+run-linux:
+	@ /home/shariq/go/bin/templ generate && cd web && npm run build && cd .. && bin/template_formatter && go build -o bin/site && bin/site

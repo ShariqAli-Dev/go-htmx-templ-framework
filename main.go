@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -8,8 +10,11 @@ import (
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/adaptor"
+	"github.com/jackc/pgx/v5"
 	"github.com/shareed2k/goth_fiber"
 	"github.com/shariqali-dev/quizmify/api"
+	"github.com/shariqali-dev/quizmify/db"
+
 	"github.com/shariqali-dev/quizmify/views"
 )
 
@@ -43,7 +48,11 @@ var (
 )
 
 func main() {
-	listenAddr := ":3000"
+	client, err := pgx.Connect(context.Background(), db.DB_URL)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer client.Close(context.TODO())
 
 	var (
 		routeHandler = api.NewRouteHandler()
@@ -61,5 +70,5 @@ func main() {
 	app.Get("/dashboard", api.ValidateUser, routeHandler.HandleGetDashboard)
 	app.Get("/quiz", api.ValidateUser, routeHandler.HandleGetQuiz)
 
-	app.Listen(listenAddr)
+	app.Listen(":3000")
 }

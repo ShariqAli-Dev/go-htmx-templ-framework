@@ -31,13 +31,16 @@ templ DashboardPage(wordMapWords string) {
 			</button>
 		</section>
 		<div class="grid gap-4 my-4 md:grid-cols-2">
-			<section id="create-quiz" class="flex items-center justify-between p-4 border border-solid cursor-pointer rounded-xl border-neutral-content drop-shadow-lg hover:opacity-25 hover:border-neutral">
-				<div>
-					<h3 class="text-xl font-bold">Quiz me!</h3>
-					<p class="text-lg">Challenge yourself to a quiz with a topic of your choice.</p>
-				</div>
-				<span><i data-lucide="brain" class="h-[30px] w-[30px]"></i></span>
-			</section>
+			<a href="/quiz">
+				<section id="create-quiz" class="flex items-center justify-between p-4 border border-solid cursor-pointer rounded-xl border-neutral-content drop-shadow-lg hover:opacity-25 hover:border-neutral">
+					<div>
+						<h3 class="text-xl font-bold">Quiz me!</h3>
+						<p class="text-lg">Challenge yourself to a quiz with a topic of your choice.</p>
+					</div>
+					<span><i data-lucide="brain" class="h-[30px] w-[30px]"></i></span>
+				</section>
+			</a>
+		<a href="/history">
 			<section id="view-history" class="flex items-center justify-between p-4 border border-solid cursor-pointer rounded-xl border-neutral-content drop-shadow-lg hover:opacity-25 hover:border-neutral">
 				<div>
 					<h3 class="text-xl font-bold">History</h3>
@@ -45,6 +48,7 @@ templ DashboardPage(wordMapWords string) {
 				</div>
 				<span><i data-lucide="history" class="h-[30px] w-[30px]"></i></span>
 			</section>
+		</a>
 		</div>
 		<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
 			<section id="hot-topics-section" class="col-span-4 p-4 border border-solid border-neutral-content rounded-xl drop-shadow-lg">
