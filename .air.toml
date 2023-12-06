@@ -4,20 +4,19 @@ tmp_dir = "tmp"
 
 [build]
 exclude_dir = [
-    "assets",
     "tmp",
-    "vendor",
-    "testdata",
     "bin",
     "node_modules",
-    "web",
+    "web/dist",
+    "web/node_modules",
+    "web/public",
 ]
 args_bin = []
-bin = "tmp\\main.exe"
-cmd = "templ generate && cd web && npm run build && cd .. && bin\\template_formatter.exe && go build -o ./tmp/main.exe main.go"
+bin = "./tmp/main.exe"
+cmd = "templ generate && cd web && npm run build && cd .. && ./bin/template_formatter.exe && go build -o ./tmp/main.exe main.go"
 delay = 1000
 exclude_file = []
-exclude_regex = ["_test.go", "_templ.go", "dist", "node_modules"]
+exclude_regex = ["_test.go", "_templ.go"]
 exclude_unchanged = false
 follow_symlink = false
 full_bin = ""
