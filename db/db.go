@@ -1,61 +1,36 @@
-package main
+package db
 
 import (
-	"fmt"
 	"log"
+	"os"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/joho/godotenv"
 )
 
-type Person struct {
-	gorm.Model
-
-	Name  string
-	Email string `gorm:"typevarchar(100)"`
-	Books []Book
+type GormStore struct {
+	client *gorm.DB
 }
 
-type Book struct {
-	gorm.Model
-
-	Title      string
-	Author     string
-	CallNumber int
-	PersonID   int
+type Store struct {
+	PersonStore GormStore
 }
 
-var person = &Person{
-	Name:  "shairq",
-	Email: "email@email.com",
-	Books: []Book{
-		{Title: "the coolest book ever", Author: "teste", CallNumber: 234, PersonID: 10},
-	},
-}
+var DB_URL string
 
-func main() {
-	client, err := gorm.Open("postgres", "postgres://postgres:password@localhost:5432/quizmify")
+func init() {
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error loading env files")
 	}
-	defer client.Close()
-
-	// database migrations
-	client.AutoMigrate(&Person{})
-	client.AutoMigrate(&Book{})
-
-	people, err := HandleGetPeople(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("this is the people\n", people)
-
+	DB_URL = os.Getenv("DB_URL")
 }
 
-func HandleGetPeople(store *gorm.DB) (*[]Person, error) {
-	var people []Person
-	if err := store.Find(&people).Error; err != nil {
-		return nil, err
-	}
-	return &people, nil
-}
+// func HandleGetPeople(store *gorm.DB) (*[]Person, error) {
+// 	var people []types.Person
+// 	if err := store.Find(&people).Error; err != nil {
+// 		return nil, err
+// 	}
+// 	return &people, nil
+// }
